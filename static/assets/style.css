@@ -1,0 +1,341 @@
+body
+{
+    background-color: rgba(18,18,18,255);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+   
+}
+.navbar
+{
+    background-color: rgba(24,24,28,255);
+}
+.img
+{
+    opacity: 0.5;
+}
+.img:hover
+{
+    opacity: 1;
+}
+.search-box {
+    
+    background-color: black;
+    margin-top: 2%;
+    border: 2px solid  rgba(18,18,18,255);
+    border-radius: 20px;
+    padding: 2px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+.search-box:hover
+{
+    cursor: pointer;
+}
+.section
+{
+    
+    margin-top: 3%;
+    margin-left: 10%;
+    opacity: 0.5;
+    text-decoration: none;
+    color: white;
+   
+}
+.section:hover
+{
+    opacity: 1;
+    color: white;
+    cursor: pointer;
+}
+.custom-btn
+{
+   background-color: rgb(255, 255, 255);  
+   color: rgb(0, 0, 0);
+   padding:10px;
+   border-radius: 10px;
+   
+}
+.custom-btn:hover
+{
+  opacity: 0.5;
+}
+
+
+  .card-img-overlay-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+  }
+  .imgs 
+  {
+    background-color: rgba(18,18,18,255);
+    width: 100%;
+    height: auto;
+  }
+  #card-design
+  {
+    color: #ffffff;
+    background-color: rgba(18,18,18,255);
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 5%;
+  }
+  #card-design p
+  {
+    color: #ffffff;
+  }
+  .opac{
+    opacity: 1;
+  }
+  .opac:hover
+  {
+    opacity: 0.5;
+  }
+  .card-img-top:hover
+
+  {
+    opacity: 0.5;
+  }
+ 
+  .btn-discount
+  {
+    
+    width: 30%;
+  }
+.scroll
+{
+    white-space: nowrap;
+    overflow-x:hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    cursor: grab; 
+    scroll-behavior: smooth;
+}
+
+  #img-size
+  {
+    width: 100%;
+    height: 100%;
+  }
+  .row1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col1  {
+    flex: 1;
+    max-width: 55%; 
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.col1 img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.free 
+{
+  width: 100%;
+  background-color: rgba(24,24,28,255);
+  color: white;
+ padding: 2% 2% 2% 2%;
+}
+.gift-icons {
+  align-items: center;
+  color: #fff;
+}
+
+.gift-icons img {
+  width: 50px;
+  margin-right: 10px;
+}
+.image-container {
+  position: relative;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 50px;
+  left: 320px;
+  background: rgba(0, 0, 0, 0.5); 
+  color: white; 
+  padding: 10px; 
+}
+.vertical-line {
+  border-left: 2px solid white; 
+  height: 100%;
+}
+.imgbox {
+  width: 50%; 
+  margin-top: 2%;
+}
+
+.flex-container {
+  list-style-type: none; 
+}
+
+.flex-container li {
+  list-style-type: none; 
+}
+
+.scrollrow
+{
+  white-space: nowrap;
+  overflow-x:hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  cursor: grab; 
+  scroll-behavior: smooth;
+}
+.border-line
+{
+  border-right: solid 1px  rgb(65, 58, 58);
+}
+.icon-size
+{
+  margin-top: 1%;
+  width: 2%;
+
+}
+.footer
+{
+ margin-top: 5%;
+  background-color: rgba(42,42,42,255);
+
+}
+.list
+{
+  list-style-type: none;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+.list li:hover
+{
+  color: #484fb6;
+}
+.icon-size
+{
+  opacity: 0.5;
+}
+.icon-size:hover
+{
+  cursor: pointer;
+  opacity: 1;
+}
+.text p 
+{
+  opacity: 0.5;
+}
+.text p:hover 
+{
+  cursor: pointer;
+  opacity: 1;
+}
+.credit
+{
+  border-radius: 20px;
+  margin-top: 7%;
+  padding: 1%;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+#checkout
+{
+  font-size: xx-large;
+  font-weight: bolder;
+  color: rgb(13,110,253);
+}
+.card-content
+{
+  background-color: #ddf1f7;
+  padding: 30px;
+  border-radius: 10px;
+  display: none;
+}
+.paypal-content
+{
+  
+  background-color: #ddf1f7;
+  padding: 30px;
+  border-radius: 10px;
+  display: none;
+}
+.wishlist-dropdown,
+.card-container
+{
+  background-color: rgba(42,42,42,255);
+  
+}
+.wishlist-dropdown1
+{
+  color:white;
+  font-weight:bolder;
+}
+
+.removebtn
+{
+  text-decoration:underline;
+  cursor: pointer;
+}
+.fontWeight
+{
+  font-weight: bolder;
+}
+#search-results-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 999; /* Ensure the overlay is above other content */
+  display: none; /* Initially hide the overlay */
+}
+
+#search-results {
+  position: fixed;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); /* Center the container */
+  max-width: 80%; /* Set maximum width */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  padding: 10px;
+  z-index: 1000; /* Ensure the container is above the overlay */
+  overflow-y: auto; /* Enable scrolling if needed */
+  max-height: 70vh; /* Set maximum height to maintain visibility */
+  display: none; /* Initially hide the search results */
+  color: #000;
+}
+
+#search-results.show {
+  display: block; 
+}
+
+#search-results-overlay.show {
+  display: block; 
+}
+

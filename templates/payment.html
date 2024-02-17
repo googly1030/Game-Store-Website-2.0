@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/assets/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid mt-5 credit" style="max-width: 85%">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex">
+            <p id="checkout">CHECKOUT</p>
+          </div>
+          <hr class="w-100 mb-4" style="background-color: rgb(201, 184, 184)" />
+          <h3 class="mb-3" style="font-weight: bolder">
+            OTHER PAYMENT METHODS
+          </h3>
+          <form>
+            <div class="d-flex">
+              <div class="form-check">
+                <input type="radio" name="paymentMethod" id="creditCard" />
+                <img
+                  width="10%"
+                  class="ml-2 mb-1"
+                  src="/static/assets/icons/credit-card.png"
+                  alt=""
+                />
+                <label class="form-check-label ml-1 mb-2" for="creditCard">
+                  <h3>Credit Card</h3>
+                </label>
+              </div>
+            </div>
+            <div class="container card-content">
+              <div class="d-flex">
+                <p class="mt-3">CARD DETAILS</p>
+              </div>
+              <form action="">
+                <input
+                  class="w-75 p-3"
+                  type="text"
+                  placeholder="Card Number"
+                  required
+                />
+                <div class="d-flex mt-3">
+                  <input
+                    class="p-2 w-50"
+                    type="text"
+                    placeholder="Expiration"
+                    required
+                  />
+                  <input
+                    class="ml-3 w-50"
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="CVV"
+                  />
+                </div>
+                <input
+                  class="w-75 p-3 mt-3"
+                  type="text"
+                  placeholder="State"
+                  required
+                />
+                <p class="mt-3">
+                  Required: Save this payment method for future purchases?
+                </p>
+                <div class="d-flex">
+                  <input class="" type="radio" name="" id="" />
+                  <label for="" class="ml-2 mt-1">YES</label>
+                  <input class="ml-3" type="radio" name="" id="" />
+                  <label for="" class="ml-2 mt-1">NO</label>
+                </div>
+                <p class="mt-2" style="font-size: small">
+                  By choosing to save your payment information, this payment
+                  method will be selected as the default for all purchases made
+                  using Games payment, including purchases in Fortnite, Rocket
+                  League, Fall Guys, and the Games Store. You can delete your
+                  saved payment information anytime on this payment screen or by
+                  logging in to your Games account, and selecting payment
+                  management in your account settings. Learn more.
+                </p>
+              </form>
+            </div>
+            <div class="d-flex">
+              <div class="form-check">
+                <input type="radio" name="paymentMethod" id="paypal" />
+                <img
+                  width="10%"
+                  class="ml-2 mb-1"
+                  src="/static/assets/icons/paypal.png"
+                  alt=""
+                />
+                <label class="form-check-label ml-1 mb-2 mt-3" for="paypal">
+                  <h3>Paypal</h3>
+                </label>
+              </div>
+            </div>
+          </form>
+          <div class="container p-3 paypal-content">
+            <p class="mt-3">
+              Required: Save this payment method for future purchases?
+            </p>
+            <div class="d-flex">
+              <input class="" type="radio" name="" id="" />
+              <label for="" class="ml-2 mt-2">YES</label>
+              <input class="ml-3" type="radio" name="" id="" />
+              <label for="" class="ml-2 mt-2">NO</label>
+            </div>
+            <p class="mt-2" style="font-size: small">
+              By choosing to save your payment information, this payment method
+              will be selected as the default for all purchases made using Games
+              payment, including purchases in Fortnite, Rocket League, Fall
+              Guys, and the Games Store. You can delete your saved payment
+              information anytime on this payment screen or by logging in to
+              your Games account, and selecting payment management in your
+              account settings. Learn more.
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 pt-5 pb-5 pl-2 pr-2 mt-5">
+          <p class="text-muted">ORDER SUMMARY</p>
+          <div class="card-img-top">
+            <img class="ml-auto" width="55%" src="{{ src }}" alt="" />
+            {% for img_url in request.args.getlist('img_urls') %}
+            <div class="col-6 col-md-4 mb-3">
+              <img class="img-fluid" src="{{ img_url }}" alt="Product Image" />
+            </div>
+            {% endfor %}
+          </div>
+          <div class="d-flex mt-2">
+            <p style="font-weight: bolder">Price</p>
+            <p style="margin-left: 40%">₹{{price}}</p>
+          </div>
+          <hr style="background-color: black" />
+          <div class="d-flex">
+            <p style="font-weight: bolder">Total</p>
+            <p style="margin-left: 40%">₹{{price}}</p>
+          </div>
+
+          <div class="container">
+            <button
+              id="placeOrderBtn"
+              class="btn btn-primary"
+              onclick="placeOrder()"
+            >
+              <span
+                class="spinner-border spinner-border-sm d-none"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Place Order
+            </button>
+            <a href="{{url_for('cart' , src= src , price=price,title=title)}}"
+              ><button class="btn btn-primary">BACK</button></a
+            >
+          </div>
+          <div id="orderStatus" class="mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/static/assets/js/app.js"></script>
+  </body>
+</html>

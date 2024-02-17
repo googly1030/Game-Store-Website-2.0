@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Store</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/assets/style.css" />
+  </head>
+  <body>
+    <nav class="navbar p-2">
+      <div class="container-fluid d-flex justify-content-between">
+        <a class="navbar-brand" href="#" style="color: white">
+          <img src="/static/assets/icons/joystick.png" alt="" width="35" height="35" class="d-inline-block align-bottom" />
+          GameStore
+        </a>
+        <div class="d-flex ml-auto">
+          {% if user_id %}
+            <a href="{{ url_for('logout') }}" class="btn btn-primary  w-100 h-25 mt-2 p-1 text-center ">Logout</a>
+            <p class="ml-3 mt-2 p-1 text-center ">{{username}}</p>
+            <a href=""><img src="/static/assets/icons/account-green.png" alt="" class="w-75 ml-1 mt-1  img"></a>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="btn btn-primary  w-100 h-25 mt-1 mr-4 p-1 text-center  ">Login</a>
+            <a href="{{ url_for('signup') }}" class="btn btn-primary  w-100 h-25 mt-1 mr-4 p-1 text-center ">Signup</a>
+            <img src="/static/assets/icons/account.png" alt="" width="15%">
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+    
+
+    <div class="container pt-3 " >
+      <div class="row" >
+        <div class="col-md-auto" >
+          <input class="search-box form-control" type="search" name="" id="" placeholder="Search" oninput="filterGames(this.value)" />
+<div id="search-results-overlay"></div>
+<div id="search-results"></div>
+         
+        </div>
+        <div class="col-md-auto ">
+          <div class="d-flex justify-content-start">
+            <a href="/" class="section">Discover</a>
+            <a class="section">Browser</a>
+            <a href="/news"  class="section">News</a>
+            <a href="/wishlist" onclick="wishListBtn(event)" class="section"
+            >Wishlist</a
+          >
+            <a href="/cart" class="section">Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid w-75 mt-5">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="{{ url_for('gamepage', src='/static/assets/game imgs/avatar.jpeg', title='Avatar_Frontiers_of_Pandora', price = '2599') }}"><img class="d-block w-100" src="/static/assets/game imgs/avatar.jpeg" alt="First slide"></a>
+            <div class="carousel-caption d-none d-md-block">
+              <img width="30%" src="/static/assets/game title/Avatar_Frontiers_of_Pandora_logo.png" alt="">
+              <p class="mt-2">Years after being abducted as a child by the RDA, you awaken on Pandora, a stranger in your own birthplace.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+           <a href="{{ url_for('gamepage', src='/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg',title='Alan wake 2', price = '2999') }}"><img class="d-block w-100" src="/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg" alt="Second slide"></a> 
+            <div class="carousel-caption d-none d-md-block">
+              <img width="30%" src="/static/assets/game title/Alan_Wake_II_logo.svg" alt="">
+              <p class="mt-2">Alan Wake 2: Winner of Time Magazine's Game of the Year; Washington Post's Game of the Year; The Game Awards' Best Game Direction, Best Art Direction and Best Narrative; and Golden Joystick's Critics' Choice Award.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+           <a href="{{ url_for('gamepage', src='/static/assets/game imgs/cod.jpg', title='CALL OF DUTY 3', price = '2599') }}"><img class="d-block w-100" src="/static/assets/game imgs/cod.jpg" alt="Third slide"></a>
+            <div class="carousel-caption d-none d-md-block">
+              <a href=""><img width="30%" src="/static/assets/game title/cod 3.png" alt=""></a>
+              <p class="mt-2">Call of Duty 3 is a 2006 first-person shooter video game developed by Treyarch and published by Activision.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    
+
+    <div class="container-fluid w-75 mt-5 ">
+      <h5 >Featured Discounts</h5>
+    <div class="row mt-5 scroll">
+      <div class="col">
+        <div id="card-design" class="card">
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/dr-fetus.jpg', title='Dr-fetus', price = '599') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/dr-fetus.jpg" alt="Card image cap">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">Dr-fetus.</h5>
+            <p class="card-text"></p>
+              <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/dr-fetus.jpg', title='Dr-fetus', price = '599') }}" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del>₹599</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="card-design" class="card">
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/cooking-trip.jpg', title='CookingTrip',price = '399') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/cooking-trip.jpg" alt="Card image cap">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center ">CookingTrip</h5>
+            <p class="card-text"></p>
+              <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/cooking-trip.jpg', title='CookingTrip',price = '399') }}" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="card-design" class="card">
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/el hijio.jpg', title='El-hijio', price = '999') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/el hijio.jpg" alt="Card image cap">
+          </a>
+         
+          <div class="card-body">
+            <h5 class="card-title text-center">El hijio</h5>
+            <p class="card-text"></p>
+              <a  href="{{ url_for('gamepage', src='/static/assets/dis-card-img/el hijio.jpg', title='El-hijio', price = '999') }}" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del> ₹999</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="card-design" class="card">
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/police.jpg', title='Chicken Police' , price = '499' ) }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/police.jpg" alt="Card image cap">
+          </a>
+         
+          <div class="card-body">
+            <h5 class="card-title text-center">Chicken Police</h5>
+            <p class="card-text"></p>
+              <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/police.jpg', title='Chicken Police' , price = '499' ) }}"class="btn btn-primary col">-30% Off</a>
+             <p class="text-center"><del class="mt-5">₹30</del> ₹499</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="card-design"  class="card" >
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/follow u.png', title='It Follows You', price = '699') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/follow u.png" alt="Card image cap">
+          </a>
+         
+          <div class="card-body">
+            <h5 class="card-title text-center">It Follows You</h5>
+            <p class="card-text"></p>
+              <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del>₹ 699</p>
+          </div>
+        </div> 
+      </div>
+      <div class="col">
+        <div id="card-design"  class="card" >
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/snow.jpg', title='Snow Runner', price = '999') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/snow.jpg" alt="Card image cap">
+          </a>
+          
+          <div class="card-body">
+            <h5 class="card-title text-center">Snow Runner</h5>
+            <p class="card-text"></p>
+              <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del> ₹999</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="card-design"  class="card" >
+          <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/bus.png', title='BUS SIMULATOR', price = '399') }}">
+            <img class="card-img-top" src="/static/assets/dis-card-img/bus.png" alt="Card image cap">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">BUS SIMULATOR</h5>
+            <p class="card-text"></p>
+              <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+              <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+  <div class="container-fluid w-75">
+    <h3 class=" mt-5">POPULAR GAMES</h3></div>
+  <div class="container-fluid w-75 free mt-3">
+    <div class="gift-icons d-flex justify-content-start align-items-center">
+      <img src="/static/assets/icons/gift.png" alt="">
+      <p class="m-0 ml-2">PLAY NOW</p>
+      <button class="btn custom-btn ml-auto">VIEW MORE</button>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-4 col-lg-6">
+        <div class="card">
+
+          <a href="{{url_for('gamepage',src='/static/assets/game imgs/cod.jpg',title='Call Of Duty',price='2999')}}"><img src="/static/assets/game imgs/cod.jpg" class="card-img-top" alt="Call of Duty"></a>
+          <div class="card-body" style=" background-color: rgba(24,24,28,255);">
+            <a href="{{url_for('gamepage',src='/static/assets/game imgs/cod.jpg',price='2999')}}">  <button class="btn btn-primary w-100">₹2999</button></a> 
+            <p class="mt-5">Call Of Duty</p>
+            <P class="text-muted" >Feb 01 at 9:30PM</P>
+          </div>
+           
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-6">
+        <div class="card">
+         <a href="{{url_for('gamepage',src='/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg',title='Alan wake 2',price='3999')}}"><img src="/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg" class="card-img-top" alt="Alan Wake 2"></a> 
+          <div class="card-body" style=" background-color: rgba(24,24,28,255);">
+            <a href="{{url_for('gamepage',src='/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg',title='Alan wake 2',price='3999')}}">  <button class="btn btn-primary w-100">₹3999</button></a> 
+          
+            <p class="mt-5">Alan wake 2</p>
+            <P class="text-muted" >Feb 01 at 9:30PM</P>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class=" container-fluid w-75 mt-5">POPULAR GAMES</h3></div>
+  <div class="container-fluid mt-5" style="width: 92%;">
+    <div class="row">
+        <div class="col-md-4 col-lg-5 offset-lg-1">
+            <div class="card" style="background-color: rgba(24, 24, 28, 255);">
+              <a href="{{url_for('gamepage',src='/static/assets/game imgs/fall-guys-ultimate-knockout-bsz1ur6ls1n3l9tw.jpg',title='Fall-guys',price='FREE TO PLAY')}}"><img src="/static/assets/game imgs/fall-guys-ultimate-knockout-bsz1ur6ls1n3l9tw.jpg" alt="" class="card-img-top"></a> 
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>Fall-guys</h4>
+                        <div class="card-text">
+                            <p class="text-muted">The Fall Guys Shapes and Stickers Update includes new Shapes, Primitives, Stickers and Object Scaling in Creative.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-5">
+            <div class="card" style="background-color: rgba(24, 24, 28, 255);">
+              <a href="{{url_for('gamepage',src='/static/assets/game imgs/rocket-league.jpg',title='Rocket League',price='FREE TO PLAY')}}"><img src="/static/assets/game imgs/rocket-league.jpg" alt="" class="card-img-top"></a>
+                
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>rocket-league</h4>
+                        <div class="card-text">
+                            <p class="text-muted">Find your purp in the Item Shop! Get a Purple Dominus GT, Purple Trinity Boost, Universal Slipstream Decal, and more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid w-75 mt-5 ">
+  <h5 >NEW RELEASE</h5>
+<div class="row mt-5 scroll">
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/dr-fetus.jpg', title='Dr-fetus', price = '599') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/dr-fetus.jpg" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center">Dr-fetus.</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹599</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/cooking-trip.jpg', title='CookingTrip',price = '399') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/cooking-trip.jpg" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center ">CookingTrip</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/el hijio.jpg', title='El-hijio', price = '999') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/el hijio.jpg" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">El hijio</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹999</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/police.jpg', title='Chicken Police' , price = '499' ) }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/police.jpg" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">Chicken Police</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+         <p class="text-center"><del class="mt-5">₹30</del>₹ 499</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/follow u.png', title='It Follows You', price = '699') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/follow u.png" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">It Follows You</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹699</p>
+      </div>
+    </div> 
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/snow.jpg', title='Snow Runner', price = '999') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/snow.jpg" alt="Card image cap">
+      </a>
+      
+      <div class="card-body">
+        <h5 class="card-title text-center">Snow Runner</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del>₹999</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/bus.png', title='BUS SIMULATOR', price = '399') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/bus.png" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center">BUS SIMULATOR</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="container-fluid w-75 text-center mt-5 overflow-auto" style="width: 81%;">
+  <div class="row ">
+    <div class="col ">
+      <div class="row d-flex justify-content-between  ml-5">
+        <h5>Top seller</h5>
+        <button class="btn btn-dark ">view more</button>
+        <h5>New Games</h5>
+        <button class="btn btn-dark ml-5">view more</button>
+        <h5>Wishlist</h5>
+        <button class="btn btn-dark ml-5">view more</button>
+      </div>
+      <div class="row mt-3">
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/rocket-league.jpg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/prince of persia.jpg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/valo.jpg" alt=""></a></div>
+      </div>
+
+      <div class="row">
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/avatar.jpeg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/wp13064815-alan-wake-2-hd-wallpapers.jpg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/fortnite.jpg" alt=""></a></div>
+      </div>
+
+      <div class="row">
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/fall-guys-ultimate-knockout-bsz1ur6ls1n3l9tw.jpg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/cod.jpg" alt=""></a></div>
+        <div class="col border-line"><a class="opac" href=""><img class="w-75 mt-4 img-fluid" src="/static/assets/game imgs/prince of persia.jpg" alt=""></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid w-75 mt-5 ">
+  <h5 >MOST POPULAR</h5>
+<div class="row mt-5 scroll">
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/dr-fetus.jpg', title='Dr-fetus', price = '599') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/dr-fetus.jpg" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center">Dr-fetus.</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹599</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/cooking-trip.jpg', title='CookingTrip',price = '399') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/cooking-trip.jpg" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center ">CookingTrip</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/el hijio.jpg', title='El-hijio', price = '999') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/el hijio.jpg" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">El hijio</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹999</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design" class="card">
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/police.jpg', title='Chicken Police' , price = '499' ) }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/police.jpg" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">Chicken Police</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+         <p class="text-center"><del class="mt-5">₹30</del> ₹499</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/follow u.png', title='It Follows You', price = '699') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/follow u.png" alt="Card image cap">
+      </a>
+     
+      <div class="card-body">
+        <h5 class="card-title text-center">It Follows You</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹699</p>
+      </div>
+    </div> 
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/snow.jpg', title='Snow Runner', price = '999') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/snow.jpg" alt="Card image cap">
+      </a>
+      
+      <div class="card-body">
+        <h5 class="card-title text-center">Snow Runner</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹999</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="card-design"  class="card" >
+      <a href="{{ url_for('gamepage', src='/static/assets/dis-card-img/bus.png', title='BUS SIMULATOR', price = '399') }}">
+        <img class="card-img-top" src="/static/assets/dis-card-img/bus.png" alt="Card image cap">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center">BUS SIMULATOR</h5>
+        <p class="card-text"></p>
+          <a href="/gamepage" class="btn btn-primary col">-30% Off</a>
+          <p class="text-center"><del class="mt-5">₹30</del> ₹399</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<div class="container-fluid w-75 mt-5 text-center">
+<div class="row">
+  <div class="col">
+    <img class="card w-100 opac" src="/static/assets/game imgs/shop.png" alt="">
+    <div class="card-title">Sales & Specials</div>
+    <div class="card-text text-muted">Save big on hit titles and hidden gems. There's always something on sale at the Epic Games Store!</div>
+    <a class="btn btn-dark mt-3" href="">Browse</a>
+  </div>
+  <div class="col ml-5">
+    <img class="card w-100 opac" src="/static/assets/game imgs/list of games.png" alt="">
+    <div class="card-title ">Free Gamess</div>
+    <div class="card-text text-muted">Save big on hit titles and hidden gems. There's always something on sale at the Epic Games Store!</div>
+    <a class="btn btn-dark mt-3" href="">Play Games</a>
+  </div>
+  <div class="col ml-5">
+    <img class="card w-100 opac" src="/static/assets/game imgs/app.jpeg" alt="">
+    <div class="card-title">App</div>
+    <div class="card-text text-muted">Save big on hit titles and hidden gems. There's always something on sale at the Epic Games Store!</div>
+    <a class="btn btn-dark mt-3" href="">Browse</a>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<footer class="container-fluid footer" >
+  
+<div class="d-flex justify-content-start ml-5">
+  <img  class="icon-size " src="/static/assets/icons/social.png" alt="">
+  <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="">
+  <img class="icon-size ml-2" src="/static/assets/icons/youtube.png" alt="">
+
+</div>
+
+<div class="row ">
+<div class="col ">
+  <ul class="list">
+    <p class="text-muted mt-5">Resouces</p>
+    <li>
+      support-a-creater
+    </li>
+    <li>
+      careers
+    </li>
+    <li>
+      company
+    </li>
+  </ul>
+</div>
+<div class="col">
+  <ul class="list">
+    <p class="text-muted mt-5">Made By GameStore</p>
+    <li>
+      Battle Breakers
+    </li>
+    <li>
+      Fortnite
+    </li>
+    <li>
+      Infinity blade
+    </li>
+  </ul>
+</div>
+<div class="col">
+  <ul class="list">
+    <p class="text-muted mt-5">Resouces</p>
+    <li >
+      support-a-creater
+    </li>
+    <li>
+      careers
+    </li>
+    <li>
+      company
+    </li>
+  </ul>
+</div>
+
+</div>
+<hr style="background-color: white;">
+<div>
+  <h6 class="w-75 text-muted mt-5 ml-5">© 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine, the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament logo are trademarks or registered trademarks of GameStore, Inc. in the United States of America and elsewhere. Other brands or product names are the trademarks of their respective owners.
+    Our websites may contain links to other sites and resources provided by third parties. These links are provided for your convenience only. GameStore has no control over the contents of those sites or resources, and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</h6>
+</div>
+<div class="row mt-4 ml-4 text">
+<div class="col-2">
+<p>Terms of Service</p>
+</div>
+<div class="col-2">
+  <p>Privacy Policy</p>
+  </div>
+  <div class="col-2">
+    <p>Store Refund Policy</p>
+    </div>
+</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/static/assets/js/app.js"></script>
+  </body>
+</html>
