@@ -239,3 +239,145 @@ const Page1Data = [
     text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
   },
 ];
+
+const Page2Data = [
+  {
+    imgUrl: "/static/assets/news_img/img1.jpg",
+    title: "Get s",
+    text: "These tips can help light",
+  },
+  {
+    imgUrl: "/static/assets/news_img/img2.jpg",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/news_img/img3.jpg",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with examining the roadblocks and pitfalls of romance—and in the process, learning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/news_img/img4.jpg",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/news_img/img1.jpg",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/news_img/img6.jpg",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base gives Techland ‘courage’ to continue improving the survival-horror epic",
+  },
+];
+
+const Page3Data = [
+  {
+    imgUrl: "/static/assets/news_img/p3img1.jpg",
+    title: "Get s",
+    text: "These tips can help light",
+  },
+  {
+    imgUrl: "/static/assets/news_img/p3img2.jpg",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/news_img/p3img3.jpeg",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with examining the roadblocks and pitfalls of romance—and in the process, learning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/news_img/p3img4.png",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/news_img/p3img1.jpg",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/news_img/p3img6.jpg",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base gives Techland ‘courage’ to continue improving the survival-horror epic",
+  },
+];
+
+var currentPage;
+function news(page) {
+  var Pagenum;
+  currentPage = page;
+  if (currentPage == 3) {
+    currentPage = 0;
+    page = currentPage;
+  }
+  if (currentPage == -1) {
+    currentPage = 2;
+    page = currentPage;
+  }
+
+  var NextBtn = document.getElementById("next");
+  var PrevBtn = document.getElementById("prev");
+  NextBtn.addEventListener("click", function () {
+    currentPage = (currentPage + 1) % 3;
+    page = currentPage;
+  });
+  PrevBtn.addEventListener("click", function () {
+    currentPage = (currentPage - 1 + 3) % 3;
+    page = currentPage;
+  });
+
+  if (page == 0) {
+    Pagenum = Page1Data;
+  } else if (page == 1) {
+    Pagenum = Page2Data;
+  } else if (page == 2) {
+    Pagenum = Page3Data;
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "/news",
+    contentType: "application/json",
+    data: JSON.stringify({
+      array: Pagenum,
+      page: page,
+      currentPage: currentPage,
+    }),
+    success: function (response) {
+      console.log("Processed Data:", response.result);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+    },
+  });
+}
+
+function Newspage1() {
+  Pagenum = Page1Data;
+  currentPage = 0;
+  $.ajax({
+    type: "POST",
+    url: "/news",
+    contentType: "application/json",
+    data: JSON.stringify({
+      array: Pagenum,
+      currentPage: currentPage,
+    }),
+    success: function (response) {
+      console.log("Processed Data:", response.result);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+    },
+  });
+}
