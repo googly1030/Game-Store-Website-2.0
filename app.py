@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flash, session
+from flask import Flask, render_template, redirect, request, flash, session, jsonify
 from flask_mysqldb import MySQL
 from flask_login import (
     LoginManager,
@@ -44,7 +44,10 @@ def load_user(user_id):
 def mainpage():
     user_id = session.get("user_id")
     username = session.get("username")
-    return render_template("index.html", user_id=user_id, username=username)
+    curpage = 0
+    return render_template(
+        "index.html", user_id=user_id, username=username, curpage=curpage
+    )
 
 
 @app.route("/signup", methods=["POST", "GET"])
@@ -242,11 +245,40 @@ def remove_from_cart():
     return redirect("/cart")
 
 
+pagenum = None
+curpage = None
+
+
 @app.route("/news", methods=["POST", "GET"])
 def news():
-    return render_template(
-        "newspage.html",
-    )
+    global pagenum, curpage
+    if request.method == "POST":
+        pageNo = request.json.get("page")
+        currentpage = request.json.get("currentPage")
+        data = request.json.get("array")
+        user_id = session.get("user_id")
+        username = session.get("username")
+        pagenum = data
+        curpage = currentpage
+        print(currentpage)
+        return render_template(
+            "newspage.html",
+            user_id=user_id,
+            username=username,
+            data=data,
+            pageNO=pageNo,
+            currentpage=currentpage,
+        )
+    else:
+        user_id = session.get("user_id")
+        username = session.get("username")
+        return render_template(
+            "newspage.html",
+            user_id=user_id,
+            username=username,
+            pagenum=pagenum,
+            curpage=curpage,
+        )
 
 
 @app.route("/logout", methods=["POST", "GET"])
