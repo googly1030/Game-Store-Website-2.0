@@ -1,381 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Store</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/assets/style.css" />
-  </head>
-  <body>
-    <nav class="navbar p-2">
-      <div class="container-fluid d-flex justify-content-between">
-        <a class="navbar-brand" href="#" style="color: rgb(77, 75, 75)">
-          <img
-            src="/static/assets/icons/joystick.png"
-            alt=""
-            width="35"
-            height="35"
-            class="d-inline-block align-bottom"
-          />
-          GameStore
-        </a>
-        <div class="d-flex ml-auto">
-          {% if user_id %}
-          <a
-            href="{{ url_for('logout') }}"
-            class="btn btn-primary w-100 h-25 mt-2 p-1 text-center"
-            >Logout</a
-          >
-          <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
-          <a href=""
-            ><img
-              src="/static/assets/icons/account-green.png"
-              alt=""
-              class="w-75 ml-1 mt-1 img"
-          /></a>
-          {% else %}
-          <a
-            href="{{ url_for('login') }}"
-            class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center"
-            >Login</a
-          >
-          <a
-            href="{{ url_for('signup') }}"
-            class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center"
-            >Signup</a
-          >
-          <a href=""
-            ><img
-              src="/static/assets/icons/account.png"
-              alt=""
-              class="w-100 img"
-          /></a>
-          {% endif %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Store</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/assets/style.css" />
+</head>
+
+<body>
+  <nav class="navbar p-2">
+    <div class="container-fluid d-flex justify-content-between">
+      <a class="navbar-brand" href="#" style="color: rgb(77, 75, 75)">
+        <img src="/static/assets/icons/joystick.png" alt="" width="35" height="35"
+          class="d-inline-block align-bottom" />
+        GameStore
+      </a>
+      <div class="d-flex ml-auto">
+        {% if user_id %}
+        <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
+        <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
+        <a href=""><img src="/static/assets/icons/account-green.png" alt="" class="w-75 ml-1 mt-1 img" /></a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Signup</a>
+        <a href=""><img src="/static/assets/icons/account.png" alt="" class="w-100 img" /></a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid w-75 pt-3">
+    <div class="row">
+      <div class="col-md-auto">
+        <input class="search-box form-control" type="search" name="" id="" placeholder="Search" />
+      </div>
+      <div class="col-md-auto">
+        <div class="d-flex justify-content-start">
+          <a href="/" class="section">Discover</a>
+          <a class="section">Browser</a>
+          <a href="/news" onclick="news(0)" class="section">News</a>
+          <a href="/wishlist" class="section">Wishlist</a>
+          <a href="/cart" class="section">Cart</a>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
 
-    <div class="container-fluid w-75 pt-3">
+  <div class="container-fluid w-75 mt-3">
+    <h1 style="font-weight: bolder">Games Store's News</h1>
+    <div class="container-fluid fontWeight d-flex justify-content-around mt-4 flex-wrap">
+      <div class="card col-md-6 mb-4" style="background-color: rgb(18, 18, 18)">
+        <a href=""><img class="w-100 opac" src="/static/assets/game imgs/alan-wake-1.jpg" alt="" /></a>
+        <div class="card-title mt-2" style="font-size: large">
+          <p>
+            Alan wake 1 beginner’s guide: 14 tips to complete the game 10x
+            faster
+          </p>
+          <div class="card-text text-muted" style="font-size: small">
+            Our Alan wake 1 guide contains tips to help you get started
+          </div>
+        </div>
+        <a class="opac" style="text-decoration: underline">Read More</a>
+      </div>
+      <div class="card col-md-6 mb-4" style="background-color: rgb(18, 18, 18)">
+        <a href=""><img class="w-100 opac"
+            src="/static/assets/game imgs/banishers-ghosts-of-new-eden-best-skills-guide--3840x2160-572617fda53c.jpg"
+            alt="" /></a>
+        <div class="card-title mt-2">
+          <p style="font-size: large">
+            Banishers: Ghosts of New Eden: How to pick the best evolution
+            skills
+          </p>
+          <div class="card-text text-muted" style="font-size: small">
+            Survive this tale of undying love with our guide to the best
+            skills and perks in Banishers: Ghosts of New Eden
+          </div>
+        </div>
+        <a class="opac" style="text-decoration: underline">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid w-75 mt-3">
+    <div class="container-fluid ml-3">
+      {% if pagenum %} {% for item in pagenum %}
       <div class="row">
-        <div class="col-md-auto">
-          <input
-            class="search-box form-control"
-            type="search"
-            name=""
-            id=""
-            placeholder="Search"
-          />
+        <div class="col-md-3">
+          <a href="">
+            <img src="{{ item['imgUrl'] }}" class="img-fluid" alt="Image" />
+          </a>
         </div>
-        <div class="col-md-auto">
-          <div class="d-flex justify-content-start">
-            <a href="/" class="section">Discover</a>
-            <a class="section">Browser</a>
-            <a class="section">News</a>
-            <a href="/wishlist" class="section">Wishlist</a>
-            <a href="/cart" class="section">Cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid w-75 mt-3">
-      <h1 style="font-weight: bolder">Games Store's News</h1>
-      <div
-        class="container-fluid fontWeight d-flex justify-content-around mt-4 flex-wrap"
-      >
-        <div
-          class="card col-md-6 mb-4"
-          style="background-color: rgb(18, 18, 18)"
-        >
-          <a href=""
-            ><img
-              class="w-100 opac"
-              src="/static/assets/game imgs/alan-wake-1.jpg"
-              alt=""
-          /></a>
-          <div class="card-title mt-2" style="font-size: large">
-            <p>
-              Alan wake 1 beginner’s guide: 14 tips to complete the game 10x
-              faster
-            </p>
-            <div class="card-text text-muted" style="font-size: small">
-              Our Alan wake 1 guide contains tips to help you get started
-            </div>
-          </div>
-          <a class="opac" style="text-decoration: underline">Read More</a>
-        </div>
-        <div
-          class="card col-md-6 mb-4"
-          style="background-color: rgb(18, 18, 18)"
-        >
-          <a href=""
-            ><img
-              class="w-100 opac"
-              src="/static/assets/game imgs/banishers-ghosts-of-new-eden-best-skills-guide--3840x2160-572617fda53c.jpg"
-              alt=""
-          /></a>
-          <div class="card-title mt-2">
-            <p style="font-size: large">
-              Banishers: Ghosts of New Eden: How to pick the best evolution
-              skills
-            </p>
-            <div class="card-text text-muted" style="font-size: small">
-              Survive this tale of undying love with our guide to the best
-              skills and perks in Banishers: Ghosts of New Eden
-            </div>
-          </div>
-          <a class="opac" style="text-decoration: underline">Read More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid w-75 mt-3">
-      <div class="container-fluid ml-3">
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/genshin-impact-4-1920x1080-30df09f89d45.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>Get started in Genshin Impact with our beginner’s guide</h5>
-            <p>
-              These tips can help lighten the load for your trip through Teyvat
-            </p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/rainworldheader-3849x2165-458fc618b64d.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>
-              The secret mode that turns unforgiving platformer Rain World into
-              a zen safari
-            </h5>
-            <p>All the world’s a zoo in this postapocalyptic safari park</p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/header-4k-3840x2160-f35c80a21a50.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>
-              For Valentine’s Day, we talk to Bugsnax’s developers about janky
-              kisses and love
-            </h5>
-            <p>
-              Young Horses’ second outing tasks players with examining the
-              roadblocks and pitfalls of romance—and in the process, learning
-              something about themselves.
-            </p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/pubg.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>What game genre is best for you?</h5>
-            <p>
-              He likes League of Legends, I like Genshin Impact. What about you?
-            </p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/snowrunner.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>
-              SnowRunner is a trucking game where your only enemy is earth
-            </h5>
-            <p>
-              Under the hood of SnowRunner and the upcoming Expeditions: A
-              Mudrunner Game
-            </p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-
-        <div class="row">
-          <div class="col-md-3">
-            <a href="">
-              <img
-                src="/static/assets/game imgs/dyinglight 2.jpg"
-                class="img-fluid"
-                alt="Image"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 mt-3">
-            <h5>
-              Dying Light 2 celebrates a second birthday, eyes three more years
-              of support
-            </h5>
-            <p>
-              Strong community support and a growing player base gives Techland
-              ‘courage’ to continue improving the survival-horror epic
-            </p>
-            <p class="opac" style="text-decoration: underline">Read More</p>
-          </div>
-        </div>
-        <hr style="background-color: rgb(77, 75, 75)" />
-      </div>
-    </div>
-
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-            >Previous</a
-          >
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-
-    <button onclick="store()">store</button>
-    <footer class="container-fluid footer">
-      <div class="d-flex justify-content-start ml-5">
-        <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
-        <img
-          class="icon-size ml-2"
-          src="/static/assets/icons/twitter.png"
-          alt=""
-        />
-        <img
-          class="icon-size ml-2"
-          src="/static/assets/icons/youtube.png"
-          alt=""
-        />
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-3">Resouces</p>
-            <li>support-a-creater</li>
-            <li>careers</li>
-            <li>company</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-3">Made By GameStore</p>
-            <li>Battle Breakers</li>
-            <li>Fortnite</li>
-            <li>Infinity blade</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-3">Resouces</p>
-            <li>support-a-creater</li>
-            <li>careers</li>
-            <li>company</li>
-          </ul>
+        <div class="col-md-6 mt-3">
+          <h5>{{ item['title'] }}</h5>
+          <p>{{ item['text'] }}</p>
+          <p class="opac" style="text-decoration: underline">Read More</p>
         </div>
       </div>
       <hr style="background-color: rgb(77, 75, 75)" />
-      <div>
-        <h6 class="w-75 text-muted mt-3 ml-5">
-          © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
-          GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
-          the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
-          logo are trademarks or registered trademarks of GameStore, Inc. in the
-          United States of America and elsewhere. Other brands or product names
-          are the trademarks of their respective owners. Our websites may
-          contain links to other sites and resources provided by third parties.
-          These links are provided for your convenience only. GameStore has no
-          control over the contents of those sites or resources, and accepts no
-          responsibility for them or for any loss or damage that may arise from
-          your use of them.
-        </h6>
-      </div>
-      <div class="row mt-4 ml-4 text">
-        <div class="col-2">
-          <p>Terms of Service</p>
-        </div>
-        <div class="col-2">
-          <p>Privacy Policy</p>
-        </div>
-        <div class="col-2">
-          <p>Store Refund Policy</p>
-        </div>
-      </div>
-    </footer>
+      {% endfor %} {% else %}
+      <p>No data received.</p>
+      {% endif %}
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/static/assets/js/app.js"></script>
-  </body>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if curpage == 0 %}
+      <li class="page-item ">
+        <a id="prev" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') - 1)">Previous</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" onclick="news(0)" href="/news">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/news" onclick="news(1)">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/news" onclick="news(2)">3</a>
+      </li>
+      <li class="page-item">
+        <a id="next" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') + 1)">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="pagination justify-content-center">
+      {% if curpage == 1 %}
+      <li class="page-item ">
+        <a id="prev" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') - 1)">Previous</a>
+      </li>
+      <li class="page-item ">
+        <a class="page-link" onclick="news(0)" href="/news">1</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" href="/news" onclick="news(1)">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/news" onclick="news(2)">3</a>
+      </li>
+      <li class="page-item">
+        <a id="next" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') + 1)">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="pagination justify-content-center">
+      {% if curpage == 2 %}
+      <li class="page-item ">
+        <a id="prev" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') - 1)">Previous</a>
+      </li>
+      <li class="page-item ">
+        <a class="page-link" onclick="news(0)" href="/news">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/news" onclick="news(1)">2</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" href="/news" onclick="news(2)">3</a>
+      </li>
+      <li class="page-item">
+        <a id="next" class="page-link" href="/news" onclick="news(parseInt('{{curpage}}') + 1)">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+
+
+
+
+  <footer class="container-fluid footer">
+    <div class="d-flex justify-content-start ml-5">
+      <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
+      <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="" />
+      <img class="icon-size ml-2" src="/static/assets/icons/youtube.png" alt="" />
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-3">Resouces</p>
+          <li>support-a-creater</li>
+          <li>careers</li>
+          <li>company</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-3">Made By GameStore</p>
+          <li>Battle Breakers</li>
+          <li>Fortnite</li>
+          <li>Infinity blade</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-3">Resouces</p>
+          <li>support-a-creater</li>
+          <li>careers</li>
+          <li>company</li>
+        </ul>
+      </div>
+    </div>
+    <hr style="background-color: rgb(77, 75, 75)" />
+    <div>
+      <h6 class="w-75 text-muted mt-3 ml-5">
+        © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
+        GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
+        the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
+        logo are trademarks or registered trademarks of GameStore, Inc. in the
+        United States of America and elsewhere. Other brands or product names
+        are the trademarks of their respective owners. Our websites may
+        contain links to other sites and resources provided by third parties.
+        These links are provided for your convenience only. GameStore has no
+        control over the contents of those sites or resources, and accepts no
+        responsibility for them or for any loss or damage that may arise from
+        your use of them.
+      </h6>
+    </div>
+    <div class="row mt-4 ml-4 text">
+      <div class="col-2">
+        <p>Terms of Service</p>
+      </div>
+      <div class="col-2">
+        <p>Privacy Policy</p>
+      </div>
+      <div class="col-2">
+        <p>Store Refund Policy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="/static/assets/js/app.js"></script>
+</body>
+
 </html>

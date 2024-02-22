@@ -1,354 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Store</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/assets/style.css" />
-  </head>
-  <body>
-    <nav class="navbar p-2">
-      <div class="container-fluid d-flex justify-content-between">
-        <a class="navbar-brand" href="#" style="color: white">
-          <img
-            src="/static/assets/icons/joystick.png"
-            alt=""
-            width="35"
-            height="35"
-            class="d-inline-block align-bottom"
-          />
-          GameStore
-        </a>
-        <div class="d-flex ml-auto">
-          {% if user_id %}
-          <a
-            href="{{ url_for('logout') }}"
-            class="btn btn-primary w-100 h-25 mt-2 p-1 text-center"
-            >Logout</a
-          >
-          <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
-          <a href=""
-            ><img
-              src="/static/assets/icons/account-green.png"
-              alt=""
-              class="w-75 ml-1 mt-1 img"
-          /></a>
-          {% else %}
-          <a
-            href="{{ url_for('login') }}"
-            class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center"
-            >Login</a
-          >
-          <a
-            href="{{ url_for('signup') }}"
-            class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center"
-            >Signup</a
-          >
-          <a href=""
-            ><img
-              src="/static/assets/icons/account.png"
-              alt=""
-              class="w-100 img"
-          /></a>
-          {% endif %}
-        </div>
-      </div>
-    </nav>
 
-    <div class="container-fluid w-75 pt-3">
-      <div class="row">
-        <div class="col-md-auto">
-          <input
-            class="search-box form-control"
-            type="search"
-            name=""
-            id=""
-            placeholder="Search"
-          />
-        </div>
-        <div class="col-md-auto">
-          <div class="d-flex justify-content-start">
-            <a href="/" class="section">Discover</a>
-            <a class="section">Browser</a>
-            <a class="section">News</a>
-            <a href="/wishlist" onclick="wishListBtn(event)" class="section"
-              >Wishlist</a
-            >
-            <a href="/cart" onclick="CartListBtn()" class="section">cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Store</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/assets/style.css" />
+</head>
 
-    <div class="container-fluid w-75 mt-5">
-      <div class="card-title"><h1>{{title}}</h1></div>
-      <div class="d-flex mt-3">
-        <p>Overview</p>
-        <p class="text-muted ml-3">FAQ</p>
-      </div>
-    </div>
-
-    <div
-      id="slider"
-      class="carousel slide container-fluid w-75"
-      data-ride="carousel"
-    >
-      <ol class="carousel-indicators">
-        <li data-target="#slider" data-slide-to="0" class="active"></li>
-        <li data-target="#slider" data-slide-to="1"></li>
-        <li data-target="#slider" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="{{ src }}" alt="" />
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="{{ src }}" alt="" />
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="{{ src }}" alt="" />
-        </div>
-      </div>
-      <a
-        class="carousel-control-prev"
-        href="#slider"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+<body>
+  <nav class="navbar p-2">
+    <div class="container-fluid d-flex justify-content-between">
+      <a class="navbar-brand" href="#" style="color: white">
+        <img src="/static/assets/icons/joystick.png" alt="" width="35" height="35"
+          class="d-inline-block align-bottom" />
+        GameStore
       </a>
-      <a
-        class="carousel-control-next"
-        href="#slider"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">next</span>
-      </a>
+      <div class="d-flex ml-auto">
+        {% if user_id %}
+        <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
+        <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
+        <a href=""><img src="/static/assets/icons/account-green.png" alt="" class="w-75 ml-1 mt-1 img" /></a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Signup</a>
+        <a href=""><img src="/static/assets/icons/account.png" alt="" class="w-100 img" /></a>
+        {% endif %}
+      </div>
     </div>
-    <div class="d-flex container-fluid w-75 pt-3">
-      <p class="btn btn-primary mt-3">-30%</p>
-      <p style="font-size: xx-large" class="mt-2 ml-5">₹{{price}}</p>
+  </nav>
+
+  <div class="container-fluid w-75 pt-3">
+    <div class="row">
+      <div class="col-md-auto">
+        <input class="search-box form-control" type="search" name="" id="" placeholder="Search" />
+      </div>
+      <div class="col-md-auto">
+        <div class="d-flex justify-content-start">
+          <a href="/" class="section">Discover</a>
+          <a class="section">Browser</a>
+          <a href="/news" onclick="Newspage1()" class="section">News</a>
+          <a href="/wishlist" onclick="wishListBtn(event)" class="section">Wishlist</a>
+          <a href="/cart" onclick="CartListBtn()" class="section">cart</a>
+        </div>
+      </div>
     </div>
-    <div class="container-fluid w-75">
-      <p>Sale ends 2/6/2024 at 9:30 PM</p>
-      <a href="{{ url_for('payment',src=src, price=price, title=title,) }}">
-        <button class="btn btn-primary w-25">BUY NOW</button>
-      </a>
+  </div>
 
-      <a
-        href="#"
-        class="btn btn-secondary ml-2 addbtn"
-        onclick="addToCart('{{ src }}', '{{ title }}', '{{ price }}','{{username}}')"
-        >ADD TO Cart</a
-      >
+  <div class="container-fluid w-75 mt-5">
+    <div class="card-title">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="d-flex mt-3">
+      <p>Overview</p>
+      <p class="text-muted ml-3">FAQ</p>
+    </div>
+  </div>
 
-      <a
-        href="#"
-        class="btn btn-secondary ml-2 addbtn"
-        onclick="addToWishlist('{{ src }}', '{{ title }}', '{{ price }}','{{username}}')"
-        >ADD TO WISHLIST</a
-      >
+  <div id="slider" class="carousel slide container-fluid w-75" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#slider" data-slide-to="0" class="active"></li>
+      <li data-target="#slider" data-slide-to="1"></li>
+      <li data-target="#slider" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ src }}" alt="" />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ src }}" alt="" />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ src }}" alt="" />
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">next</span>
+    </a>
+  </div>
+  <div class="d-flex container-fluid w-75 pt-3">
+    <p class="btn btn-primary mt-3">-30%</p>
+    <p style="font-size: xx-large" class="mt-2 ml-5">₹{{price}}</p>
+  </div>
+  <div class="container-fluid w-75">
+    <p>Sale ends 2/6/2024 at 9:30 PM</p>
+    <a href="{{ url_for('payment',src=src, price=price, title=title,) }}">
+      <button class="btn btn-primary w-25">BUY NOW</button>
+    </a>
+
+    <a href="#" class="btn btn-secondary ml-2 addbtn"
+      onclick="addToCart('{{ src }}', '{{ title }}', '{{ price }}','{{username}}')">ADD TO Cart</a>
+
+    <a href="#" class="btn btn-secondary ml-2 addbtn"
+      onclick="addToWishlist('{{ src }}', '{{ title }}', '{{ price }}','{{username}}')">ADD TO WISHLIST</a>
+  </div>
+
+  <div class="card-text container-fluid w-75 mt-5">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias iusto
+    tenetur iure blanditiis natus commodi enim. Facilis, modi numquam, porro
+    aut error, odit accusantium placeat et nisi aperiam facere delectus.
+    <div class="d-flex col">
+      <p class="mt-5 text-muted">Genres</p>
+      <p class="mt-5 text-muted" style="margin-left: 46%">Features</p>
     </div>
 
-    <div class="card-text container-fluid w-75 mt-5">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias iusto
-      tenetur iure blanditiis natus commodi enim. Facilis, modi numquam, porro
-      aut error, odit accusantium placeat et nisi aperiam facere delectus.
+    <div class="row">
       <div class="d-flex col">
-        <p class="mt-5 text-muted">Genres</p>
-        <p class="mt-5 text-muted" style="margin-left: 46%">Features</p>
+        <p class="ml-3" style="text-decoration: underline">Action</p>
+        <span class="ml-2">,</span>
+        <p class="ml-2" style="text-decoration: underline">Adventure</p>
       </div>
-
-      <div class="row">
-        <div class="d-flex col">
-          <p class="ml-3" style="text-decoration: underline">Action</p>
-          <span class="ml-2">,</span>
-          <p class="ml-2" style="text-decoration: underline">Adventure</p>
-        </div>
-        <div class="d-flex col">
-          <p style="text-decoration: underline">Singleplayer</p>
-          <span class="ml-2">,</span>
-          <p class="ml-2" style="text-decoration: underline">fun</p>
-        </div>
+      <div class="d-flex col">
+        <p style="text-decoration: underline">Singleplayer</p>
+        <span class="ml-2">,</span>
+        <p class="ml-2" style="text-decoration: underline">fun</p>
       </div>
     </div>
-    <hr class="container-fluid w-75" style="background-color: aliceblue" />
+  </div>
+  <hr class="container-fluid w-75" style="background-color: aliceblue" />
 
-    <div class="container-fluid w-75">
-      <h4>About the game</h4>
-      <p class="text-muted">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-        tenetur dolores minus soluta consequatur voluptates, commodi
-        voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
-        reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit. Architecto tenetur dolores minus
-        soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
-        culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
-        explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Architecto tenetur dolores minus soluta consequatur voluptates,
-        commodi voluptatibus corrupti iure earum culpa repellat nostrum
-        voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
-      </p>
-      <p class="text-muted">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-        tenetur dolores minus soluta consequatur voluptates, commodi
-        voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
-        reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit. Architecto tenetur dolores minus
-        soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
-        culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
-        explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Architecto tenetur dolores minus soluta consequatur voluptates,
-        commodi voluptatibus corrupti iure earum culpa repellat nostrum
-        voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
-      </p>
-      <p class="text-muted">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-        tenetur dolores minus soluta consequatur voluptates, commodi
-        voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
-        reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit. Architecto tenetur dolores minus
-        soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
-        culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
-        explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Architecto tenetur dolores minus soluta consequatur voluptates,
-        commodi voluptatibus corrupti iure earum culpa repellat nostrum
-        voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
-      </p>
-      <button class="btn btn-dark w-100">Show more</button>
-    </div>
+  <div class="container-fluid w-75">
+    <h4>About the game</h4>
+    <p class="text-muted">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
+      tenetur dolores minus soluta consequatur voluptates, commodi
+      voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
+      reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
+      amet, consectetur adipisicing elit. Architecto tenetur dolores minus
+      soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
+      culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
+      explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Architecto tenetur dolores minus soluta consequatur voluptates,
+      commodi voluptatibus corrupti iure earum culpa repellat nostrum
+      voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
+    </p>
+    <p class="text-muted">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
+      tenetur dolores minus soluta consequatur voluptates, commodi
+      voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
+      reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
+      amet, consectetur adipisicing elit. Architecto tenetur dolores minus
+      soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
+      culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
+      explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Architecto tenetur dolores minus soluta consequatur voluptates,
+      commodi voluptatibus corrupti iure earum culpa repellat nostrum
+      voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
+    </p>
+    <p class="text-muted">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
+      tenetur dolores minus soluta consequatur voluptates, commodi
+      voluptatibus corrupti iure earum culpa repellat nostrum voluptate, cum
+      reprehenderit saepe perferendis explicabo dolorem? Lorem ipsum dolor sit
+      amet, consectetur adipisicing elit. Architecto tenetur dolores minus
+      soluta consequatur voluptates, commodi voluptatibus corrupti iure earum
+      culpa repellat nostrum voluptate, cum reprehenderit saepe perferendis
+      explicabo dolorem? Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Architecto tenetur dolores minus soluta consequatur voluptates,
+      commodi voluptatibus corrupti iure earum culpa repellat nostrum
+      voluptate, cum reprehenderit saepe perferendis explicabo dolorem?
+    </p>
+    <button class="btn btn-dark w-100">Show more</button>
+  </div>
 
-    <div class="container-fluid w-75 mt-5">
-      <h1>Requirements</h1>
-      <div class="row mt-2">
-        <div class="col p-5" style="background-color: rgba(24, 24, 28, 255)">
-          <p class="mt-3">WINDOWS</p>
-          <p class="text-muted">Minimum</p>
-          <p class="text-muted">OS version</p>
-          <p>Windows XP SP3</p>
-          <p class="text-muted">CPU</p>
-          <p>1500MHz</p>
-          <p class="text-muted">MEMORY</p>
-          <p>512 MB RAM</p>
-          <p class="text-muted">GPU</p>
-          <p>Any</p>
-          <p class="text-muted">Langudage Supported</p>
-          <p>Audio: N/A</p>
-          <p>Text:English</p>
-        </div>
-        <div class="col p-5" style="background-color: rgba(24, 24, 28, 255)">
-          <p class="text-muted">Recommended</p>
-          <p class="text-muted">OS version</p>
-          <p>Windows 7 or later</p>
-          <p class="text-muted">CPU</p>
-          <p>2000 MHz</p>
-          <p class="text-muted">MEMORY</p>
-          <p>1 GB RAM</p>
-          <p class="text-muted">GPU</p>
-          <p>Any</p>
-        </div>
+  <div class="container-fluid w-75 mt-5">
+    <h1>Requirements</h1>
+    <div class="row mt-2">
+      <div class="col p-5" style="background-color: rgba(24, 24, 28, 255)">
+        <p class="mt-3">WINDOWS</p>
+        <p class="text-muted">Minimum</p>
+        <p class="text-muted">OS version</p>
+        <p>Windows XP SP3</p>
+        <p class="text-muted">CPU</p>
+        <p>1500MHz</p>
+        <p class="text-muted">MEMORY</p>
+        <p>512 MB RAM</p>
+        <p class="text-muted">GPU</p>
+        <p>Any</p>
+        <p class="text-muted">Langudage Supported</p>
+        <p>Audio: N/A</p>
+        <p>Text:English</p>
       </div>
-      <div class="row p-5" style="background-color: rgba(24, 24, 28, 255)">
-        <hr class="container-fluid" style="background-color: rgb(77, 79, 82)" />
+      <div class="col p-5" style="background-color: rgba(24, 24, 28, 255)">
+        <p class="text-muted">Recommended</p>
+        <p class="text-muted">OS version</p>
+        <p>Windows 7 or later</p>
+        <p class="text-muted">CPU</p>
+        <p>2000 MHz</p>
+        <p class="text-muted">MEMORY</p>
+        <p>1 GB RAM</p>
+        <p class="text-muted">GPU</p>
+        <p>Any</p>
       </div>
     </div>
+    <div class="row p-5" style="background-color: rgba(24, 24, 28, 255)">
+      <hr class="container-fluid" style="background-color: rgb(77, 79, 82)" />
+    </div>
+  </div>
 
-    <footer class="container-fluid footer">
-      <div class="d-flex justify-content-start ml-5">
-        <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
-        <img
-          class="icon-size ml-2"
-          src="/static/assets/icons/twitter.png"
-          alt=""
-        />
-        <img
-          class="icon-size ml-2"
-          src="/static/assets/icons/youtube.png"
-          alt=""
-        />
-      </div>
+  <footer class="container-fluid footer">
+    <div class="d-flex justify-content-start ml-5">
+      <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
+      <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="" />
+      <img class="icon-size ml-2" src="/static/assets/icons/youtube.png" alt="" />
+    </div>
 
-      <div class="row">
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-5">Resouces</p>
-            <li>support-a-creater</li>
-            <li>careers</li>
-            <li>company</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-5">Made By GameStore</p>
-            <li>Battle Breakers</li>
-            <li>Fortnite</li>
-            <li>Infinity blade</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="list">
-            <p class="text-muted mt-5">Resouces</p>
-            <li>support-a-creater</li>
-            <li>careers</li>
-            <li>company</li>
-          </ul>
-        </div>
+    <div class="row">
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-5">Resouces</p>
+          <li>support-a-creater</li>
+          <li>careers</li>
+          <li>company</li>
+        </ul>
       </div>
-      <hr style="background-color: white" />
-      <div>
-        <h6 class="w-75 text-muted mt-5 ml-5">
-          © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
-          GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
-          the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
-          logo are trademarks or registered trademarks of GameStore, Inc. in the
-          United States of America and elsewhere. Other brands or product names
-          are the trademarks of their respective owners. Our websites may
-          contain links to other sites and resources provided by third parties.
-          These links are provided for your convenience only. GameStore has no
-          control over the contents of those sites or resources, and accepts no
-          responsibility for them or for any loss or damage that may arise from
-          your use of them.
-        </h6>
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-5">Made By GameStore</p>
+          <li>Battle Breakers</li>
+          <li>Fortnite</li>
+          <li>Infinity blade</li>
+        </ul>
       </div>
-      <div class="row mt-4 ml-4 text">
-        <div class="col-2">
-          <p>Terms of Service</p>
-        </div>
-        <div class="col-2">
-          <p>Privacy Policy</p>
-        </div>
-        <div class="col-2">
-          <p>Store Refund Policy</p>
-        </div>
+      <div class="col">
+        <ul class="list">
+          <p class="text-muted mt-5">Resouces</p>
+          <li>support-a-creater</li>
+          <li>careers</li>
+          <li>company</li>
+        </ul>
       </div>
-    </footer>
+    </div>
+    <hr style="background-color: white" />
+    <div>
+      <h6 class="w-75 text-muted mt-5 ml-5">
+        © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
+        GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
+        the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
+        logo are trademarks or registered trademarks of GameStore, Inc. in the
+        United States of America and elsewhere. Other brands or product names
+        are the trademarks of their respective owners. Our websites may
+        contain links to other sites and resources provided by third parties.
+        These links are provided for your convenience only. GameStore has no
+        control over the contents of those sites or resources, and accepts no
+        responsibility for them or for any loss or damage that may arise from
+        your use of them.
+      </h6>
+    </div>
+    <div class="row mt-4 ml-4 text">
+      <div class="col-2">
+        <p>Terms of Service</p>
+      </div>
+      <div class="col-2">
+        <p>Privacy Policy</p>
+      </div>
+      <div class="col-2">
+        <p>Store Refund Policy</p>
+      </div>
+    </div>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/static/assets/js/app.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="/static/assets/js/app.js"></script>
+</body>
+
 </html>
