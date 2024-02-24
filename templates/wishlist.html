@@ -13,37 +13,43 @@
   <link rel="stylesheet" href="/static/assets/style.css" />
 </head>
 
-<body>
-  <nav class="navbar p-2">
-    <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="#" style="color: white">
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark  p-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
         <img src="/static/assets/icons/joystick.png" alt="" width="35" height="35"
           class="d-inline-block align-bottom" />
         GameStore
       </a>
-      <div class="d-flex ml-auto">
-        {% if user_id %}
-        <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
-        <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
-        <a href=""><img src="/static/assets/icons/account-green.png" alt="" class="w-75 ml-1 mt-1 img" /></a>
-        {% else %}
-        <a href="{{ url_for('login') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Login</a>
-        <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Signup</a>
-        <a href=""><img src="/static/assets/icons/account.png" alt="" class="w-100 img" /></a>
-        {% endif %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="d-flex ml-auto">
+          {% if user_id %}
+          <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
+          <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
+          <a href=""><img src="/static/assets/icons/account-green.png" alt="" class="w-75 ml-1 mt-1 img" /></a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Signup</a>
+          <a href=""><img src="/static/assets/icons/account.png" alt="" class="w-100 img" /></a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </nav>
 
-  <div class="container-fluid w-75 pt-3">
+  <div class="container-fluid  pt-3 fixbar  ">
     <div class="row">
-      <div class="col-md-auto col-8">
+      <div class="col-md-auto col-12 mb-3">
         <input class="search-box form-control" type="search" name="" id="" placeholder="Search" />
       </div>
-      <div class="col-md-auto col-5">
+      <div class="col-md-auto col-7">
         <div class="d-flex justify-content-start">
           <a href="/" class="section">Discover</a>
-          <a class="section">Browser</a>
+          <a href="/browse" onclick="browse()" class="section">Browser</a>
           <a href="/news" onclick="Newspage1()" class="section">News</a>
           <a href="/wishlist" class="section">Wishlist</a>
           <a href="/cart" class="section">Cart</a>
@@ -51,6 +57,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="container-fluid w-75  mt-5">
     <h1 style="font-weight: bolder">Wishlist</h1>
@@ -92,31 +99,33 @@
         </div>
         <div class="col-md-3 mt-3">
           <div class="d-flex justify-content-end">
-            <a href="" class="text-muted mt-3 removebtn" onclick="remove_from_wishlist('{{ item[0] }}')">
+            <p href="" class="text-muted mt-3 removebtn" onclick="remove_from_wishlist('{{ item[0] }}')">
               Remove
-            </a>
+            </p>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
+    {% else %}
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <img width="20%" src="/static/assets/icons/tired.png" alt="">
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+        <h1>Your Wishlist is Empty</h1>
+      </div>
+      <div class="d-flex justify-content-center mt-2">
+        <a href="/" class="text-muted">
+          <h5>Shop for Games & Apps</h5>
+        </a>
+      </div>
+    </div>
+    {% endif %}
   </div>
 
-  {% else %}
-  <div class="container">
-    <div class="d-flex justify-content-center"> <img width="20%" src="/static/assets/icons/tired.png" alt=""></div>
-    <div class="d-flex justify-content-center mt-5">
-      <h1>Your Wishlist is Empty</h1>
-    </div>
-    <div class="d-flex justify-content-center mt-2">
-      <a href="/" class="text-muted">
-        <h5>Shop for Games & Apps</h5>
-      </a>
-    </div>
-  </div>
-  {% endif %}
 
-  <footer class="container-fluid footer">
+  <div class="  footer">
     <div class="d-flex justify-content-start ml-5">
       <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
       <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="" />
@@ -176,7 +185,7 @@
         <p>Store Refund Policy</p>
       </div>
     </div>
-  </footer>
+  </div>
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -187,6 +196,6 @@
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
   <script src="/static/assets/js/app.js"></script>
-</body>
+  </body>
 
 </html>

@@ -255,3 +255,41 @@ body {
 .fontWeight {
   font-weight: bolder;
 }
+.card-width {
+  width: 20%;
+  flex: 1 0 200px;
+  margin-left: 20px;
+}
+.filter-box {
+  background-color: rgb(32, 32, 32);
+  border-radius: 2px;
+  border: black;
+  color: #ffffff;
+  text-align: center;
+  font-size: large;
+}
+.fixbar {
+  width: 100%;
+  padding: 15px;
+  position: sticky;
+  z-index: 3;
+  background-color: rgba(18, 18, 18, 255);
+  top: 0;
+}
+.page-section {
+  margin-left: 28%;
+}
+@media screen and (max-width: 768px) {
+  .f-box {
+    display: none;
+  }
+  .page-section {
+    margin-left: 0;
+    justify-content: center;
+  }
+  .genre-box {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+  }
+}

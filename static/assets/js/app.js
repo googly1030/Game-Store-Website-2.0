@@ -166,7 +166,6 @@ function remove_from_cart(item_id) {
     type: "POST",
     data: { item_id: item_id },
     success: function (response) {
-      console.log(item_id);
       location.reload();
     },
     error: function (xhr, status, error) {
@@ -312,6 +311,141 @@ const Page3Data = [
   },
 ];
 
+const BrowsePage1Data = [
+  {
+    imgUrl: "/static/assets/browse imgs/img1.avif",
+    title: "Get started in Genshin Impact with our beginner’s guide",
+    text: "These tips can help lighten the load for your trip through Teyvat",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img2.avif",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img3.avif",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img4.avif",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img5.avif",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img6.avif",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img7.avif",
+    title: "Get started in Genshin Impact with our beginner’s guide",
+    text: "These tips can help lighten the load for your trip through Teyvat",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img8.avif",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img9.avif",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img10.avif",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img11.avif",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img12.avif",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img13.avif",
+    title: "Get started in Genshin Impact with our beginner’s guide",
+    text: "These tips can help lighten the load for your trip through Teyvat",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img14.avif",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img15.avif",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img16.avif",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img17.avif",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img18.avif",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img19.avif",
+    title: "Get started in Genshin Impact with our beginner’s guide",
+    text: "These tips can help lighten the load for your trip through Teyvat",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img20.avif",
+    title:
+      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
+    text: "All the world’s a zoo in this postapocalyptic safari park",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img21.avif",
+    title:
+      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
+    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img22.avif",
+    title: "What game genre is best for you?",
+    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img23.avif",
+    title: "SnowRunner is a trucking game where your only enemy is earth",
+    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+  },
+  {
+    imgUrl: "/static/assets/browse imgs/img24.avif",
+    title:
+      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
+    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+  },
+];
+
 var currentPage;
 function news(page) {
   var Pagenum;
@@ -378,6 +512,22 @@ function Newspage1() {
     },
     error: function (xhr, status, error) {
       console.error("Error:", error);
+    },
+  });
+}
+
+function browse() {
+  var imgurl1 = BrowsePage1Data;
+  $.ajax({
+    type: "POST",
+    url: "/browse",
+    contentType: "application/json",
+    data: JSON.stringify({ BrowsePage1Data: imgurl1 }),
+    success: function () {
+      console.log("ok");
+    },
+    error: function (error) {
+      console.log(error);
     },
   });
 }

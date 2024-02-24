@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/assets/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark p-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/static/assets/icons/joystick.png" alt="" width="35" height="35"
+                    class="d-inline-block align-bottom" />
+                GameStore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex ml-auto">
+                    {% if user_id %}
+                    <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
+                    <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
+                    <a href=""><img src="/static/assets/icons/account-green.png" alt=""
+                            class="w-75 ml-1 mt-1 img" /></a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}"
+                        class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Login</a>
+                    <a href="{{ url_for('signup') }}"
+                        class="btn btn-primary w-100 h-25 mt-1 mr-4 p-1 text-center">Signup</a>
+                    <a href=""><img src="/static/assets/icons/account.png" alt="" class="w-100 img" /></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid pt-3 fixbar">
+        <div class="row">
+            <div class="col-md-auto col-12 mb-3">
+                <input class="search-box form-control" type="search" name="" id="" placeholder="Search" />
+            </div>
+            <div class="col-md-auto col-7">
+                <div class="d-flex justify-content-start">
+                    <a href="/" class="section">Discover</a>
+                    <a href="/browse" onclick="browse()" class="section">Browser</a>
+                    <a href="/news" onclick="Newspage1()" class="section">News</a>
+                    <a href="/wishlist" class="section">Wishlist</a>
+                    <a href="/cart" class="section">Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 85%" class="container-fluid offset-1 mt-5 genre-box">
+        <div class="row mt-5 scroll">
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/dr-fetus.jpg', title='Dr-fetus', price = '599') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/action.avif" alt="Card image cap" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class=" text-center">Action</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/cooking-trip.jpg', title='CookingTrip',price = '399') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img7.avif" alt="Card image cap" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class=" text-center">Action-Adventure</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/el hijio.jpg', title='El-hijio', price = '999') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img16.avif" alt="Card image cap" />
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class=" text-center">Adventure</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/police.jpg', title='Chicken Police' , price = '499' ) }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img1.avif" alt="Card image cap" />
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class=" text-center">Casual games</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/follow u.png', title='It Follows You', price = '699') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img3.avif" alt="Card image cap" />
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class=" text-center">Cross-Platform</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/snow.jpg', title='Snow Runner', price = '999') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img15.avif" alt="Card image cap" />
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class=" text-center">Exploration-games</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="card-design" class="card">
+                    <a
+                        href="{{ url_for('gamepage', src='/static/assets/dis-card-img/bus.png', title='BUS SIMULATOR', price = '399') }}">
+                        <img class="card-img-top" src="/static/assets/browse imgs/img9.avif" alt="Card image cap" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class=" text-center">Fantasy Games</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row ml-lg-5">
+        <div class="col-md-8 container-fluid w-75 mt-5">
+            <div class="d-flex flex-wrap justify-content-around">
+                {% for item in data1 %}
+                <div class="card card-width mb-3" style="background-color: rgb(18, 18, 18)">
+                    <img src="{{ item['imgUrl'] }}" alt="" />
+                    <div class="">SnowRunner</div>
+                    <div class="card-text">₹1,429</div>
+                </div>
+                {% if loop.index % 4 == 0 %}
+            </div>
+            <div class="d-flex flex-wrap justify-content-around">
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-3 mt-5 f-box">
+            <div class="container-fluid">
+                <h6>Filters</h6>
+                <div class="w-75">
+                    <input class="filter-box form-control" type="search" name="" id="" placeholder="Search" />
+                </div>
+
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        events
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        price
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        genere
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Platform
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Features
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown mt-2">
+                    <button class="btn filter-box dropdown-toggle w-75" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Types
+                    </button>
+                    <ul class="dropdown-menu wishlist-dropdown w-75" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Recently Added</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">Alphabetical</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:Low to High</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item wishlist-dropdown1" href="#">price:High to Low</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="d-flex page-section mt-5" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+
+    <footer class="container-fluid footer">
+        <div class="d-flex justify-content-start ml-5">
+            <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
+            <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="" />
+            <img class="icon-size ml-2" src="/static/assets/icons/youtube.png" alt="" />
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ul class="list">
+                    <p class="text-muted mt-5">Resouces</p>
+                    <li>support-a-creater</li>
+                    <li>careers</li>
+                    <li>company</li>
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="list">
+                    <p class="text-muted mt-5">Made By GameStore</p>
+                    <li>Battle Breakers</li>
+                    <li>Fortnite</li>
+                    <li>Infinity blade</li>
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="list">
+                    <p class="text-muted mt-5">Resouces</p>
+                    <li>support-a-creater</li>
+                    <li>careers</li>
+                    <li>company</li>
+                </ul>
+            </div>
+        </div>
+        <hr style="background-color: white" />
+        <div>
+            <h6 class="w-75 text-muted mt-5 ml-5">
+                © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
+                GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
+                the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
+                logo are trademarks or registered trademarks of GameStore, Inc. in the
+                United States of America and elsewhere. Other brands or product names
+                are the trademarks of their respective owners. Our websites may
+                contain links to other sites and resources provided by third parties.
+                These links are provided for your convenience only. GameStore has no
+                control over the contents of those sites or resources, and accepts no
+                responsibility for them or for any loss or damage that may arise from
+                your use of them.
+            </h6>
+        </div>
+        <div class="row mt-4 ml-4 text">
+            <div class="col-2">
+                <p>Terms of Service</p>
+            </div>
+            <div class="col-2">
+                <p>Privacy Policy</p>
+            </div>
+            <div class="col-2">
+                <p>Store Refund Policy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="/static/assets/js/app.js"></script>
+</body>
+
+</html>

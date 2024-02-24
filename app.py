@@ -167,10 +167,9 @@ def remove_from_wishlist():
         )
         mysql.connection.commit()
         cur.close()
-        flash("Item removed from wishlist successfully.", "success")
     else:
         flash("Item ID not provided.", "error")
-    return redirect("/wishlist")
+    return redirect("/cart")
 
 
 @app.route("/cart", methods=["POST", "GET"])
@@ -281,13 +280,6 @@ def news():
         )
 
 
-@app.route("/logout", methods=["POST", "GET"])
-def logout():
-    logout_user()
-    session.clear()
-    return redirect("/")
-
-
 @app.route("/payment", methods=["POST", "GET"])
 @login_required
 def payment():
@@ -305,6 +297,32 @@ def payment():
         src=src,
         title=title,
     )
+
+
+data1 = None
+
+
+@app.route("/browse", methods=["POST", "GET"])
+def browse():
+    global data1
+    if request.method == "POST":
+        pagedata = request.json.get("BrowsePage1Data")
+        data1 = pagedata
+        print(data1)
+        return render_template("browse.html", pagedata=pagedata)
+    else:
+        user_id = session.get("user_id")
+        username = session.get("username")
+        return render_template(
+            "browse.html", username=username, user_id=user_id, data1=data1
+        )
+
+
+@app.route("/logout", methods=["POST", "GET"])
+def logout():
+    logout_user()
+    session.clear()
+    return redirect("/")
 
 
 if __name__ == "__main__":
