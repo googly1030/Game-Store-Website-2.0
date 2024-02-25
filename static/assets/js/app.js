@@ -314,135 +314,123 @@ const Page3Data = [
 const BrowsePage1Data = [
   {
     imgUrl: "/static/assets/browse imgs/img1.avif",
-    title: "Get started in Genshin Impact with our beginner’s guide",
-    text: "These tips can help lighten the load for your trip through Teyvat",
+    title: "World Tour: Australian Puzzles",
+    text: "599",
   },
   {
     imgUrl: "/static/assets/browse imgs/img2.avif",
-    title:
-      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
-    text: "All the world’s a zoo in this postapocalyptic safari park",
+    title: "Alpha League",
+    text: "399",
   },
   {
     imgUrl: "/static/assets/browse imgs/img3.avif",
-    title:
-      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
-    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+    title: "Boltbreak",
+    text: "699",
   },
   {
     imgUrl: "/static/assets/browse imgs/img4.avif",
-    title: "What game genre is best for you?",
-    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+    title: "Crossair-X",
+    text: "39",
   },
   {
     imgUrl: "/static/assets/browse imgs/img5.avif",
-    title: "SnowRunner is a trucking game where your only enemy is earth",
-    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+    title: "DeadlyBroadCast",
+    text: "799",
   },
   {
     imgUrl: "/static/assets/browse imgs/img6.avif",
-    title:
-      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
-    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+    title: "Delivery Boy",
+    text: "99",
   },
   {
     imgUrl: "/static/assets/browse imgs/img7.avif",
-    title: "Get started in Genshin Impact with our beginner’s guide",
-    text: "These tips can help lighten the load for your trip through Teyvat",
+    title: "Durtion",
+    text: "566",
   },
   {
     imgUrl: "/static/assets/browse imgs/img8.avif",
-    title:
-      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
-    text: "All the world’s a zoo in this postapocalyptic safari park",
+    title: "Pacific Drive",
+    text: "999",
   },
   {
     imgUrl: "/static/assets/browse imgs/img9.avif",
-    title:
-      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
-    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+    title: " Bandle Tale",
+    text: "399",
   },
   {
     imgUrl: "/static/assets/browse imgs/img10.avif",
-    title: "What game genre is best for you?",
-    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+    title: "Inkuklinati",
+    text: "59",
   },
   {
     imgUrl: "/static/assets/browse imgs/img11.avif",
-    title: "SnowRunner is a trucking game where your only enemy is earth",
-    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+    title: "pacific Drive 1",
+    text: "950",
   },
   {
     imgUrl: "/static/assets/browse imgs/img12.avif",
-    title:
-      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
-    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+    title: "Pirate Mosaic Puzzle",
+    text: "75",
   },
   {
     imgUrl: "/static/assets/browse imgs/img13.avif",
-    title: "Get started in Genshin Impact with our beginner’s guide",
-    text: "These tips can help lighten the load for your trip through Teyvat",
+    title: "Ronin",
+    text: "750",
   },
   {
     imgUrl: "/static/assets/browse imgs/img14.avif",
-    title:
-      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
-    text: "All the world’s a zoo in this postapocalyptic safari park",
+    title: "Terminator",
+    text: "1299",
   },
   {
     imgUrl: "/static/assets/browse imgs/img15.avif",
-    title:
-      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
-    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+    title: "Tomb Raider",
+    text: "450",
   },
   {
     imgUrl: "/static/assets/browse imgs/img16.avif",
-    title: "What game genre is best for you?",
-    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+    title: "Park Ranger 2",
+    text: "100",
   },
   {
     imgUrl: "/static/assets/browse imgs/img17.avif",
-    title: "SnowRunner is a trucking game where your only enemy is earth",
-    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+    title: "Lysfanga",
+    text: "399",
   },
   {
     imgUrl: "/static/assets/browse imgs/img18.avif",
-    title:
-      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
-    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+    title: "Ultros",
+    text: "299",
   },
   {
     imgUrl: "/static/assets/browse imgs/img19.avif",
-    title: "Get started in Genshin Impact with our beginner’s guide",
-    text: "These tips can help lighten the load for your trip through Teyvat",
+    title: "Seekers of takane",
+    text: "650",
   },
   {
     imgUrl: "/static/assets/browse imgs/img20.avif",
-    title:
-      "The secret mode that turns unforgiving platformer Rain World into a zen safari",
-    text: "All the world’s a zoo in this postapocalyptic safari park",
+    title: "vage",
+    text: "289",
   },
   {
     imgUrl: "/static/assets/browse imgs/img21.avif",
-    title:
-      "For Valentine’s Day, we talk to Bugsnax’s developers about janky kisses and love",
-    text: "Young Horses’ second outing tasks players with exa…earning something about themselves.",
+    title: "Banishers",
+    text: "789",
   },
   {
     imgUrl: "/static/assets/browse imgs/img22.avif",
-    title: "What game genre is best for you?",
-    text: "He likes League of Legends, I like Genshin Impact. What about you?",
+    title: "Airhead",
+    text: "499",
   },
   {
     imgUrl: "/static/assets/browse imgs/img23.avif",
-    title: "SnowRunner is a trucking game where your only enemy is earth",
-    text: "Under the hood of SnowRunner and the upcoming Expeditions: A Mudrunner Game",
+    title: "RPG Survivors",
+    text: "199",
   },
   {
     imgUrl: "/static/assets/browse imgs/img24.avif",
-    title:
-      "Dying Light 2 celebrates a second birthday, eyes three more years of support",
-    text: "Strong community support and a growing player base…e’ to continue improving the survival-horror epic",
+    title: "Karos Classic",
+    text: "300",
   },
 ];
 

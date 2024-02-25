@@ -26,7 +26,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="d-flex ml-auto">
+        <div class="d-flex ml-auto mt-3">
           {% if user_id %}
           <a href="{{ url_for('logout') }}" class="btn btn-primary w-100 h-25 mt-2 p-1 text-center">Logout</a>
           <p class="ml-3 mt-2 p-1 text-center">{{username}}</p>
@@ -125,8 +125,8 @@
   </div>
 
 
-  <div class="  footer">
-    <div class="d-flex justify-content-start ml-5">
+  <footer class="container-fluid footer">
+    <div class=" d-flex justify-content-md-start ml-5">
       <img class="icon-size" src="/static/assets/icons/social.png" alt="" />
       <img class="icon-size ml-2" src="/static/assets/icons/twitter.png" alt="" />
       <img class="icon-size ml-2" src="/static/assets/icons/youtube.png" alt="" />
@@ -160,7 +160,7 @@
     </div>
     <hr style="background-color: white" />
     <div>
-      <h6 class="w-75 text-muted mt-5 ml-5">
+      <h6 style="font-size: small;" class="text-muted mt-5">
         © 2024, GameStore, Inc. All rights reserved. Epic, GameStore, the
         GameStore logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
         the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
@@ -174,18 +174,18 @@
         your use of them.
       </h6>
     </div>
-    <div class="row mt-4 ml-4 text">
-      <div class="col-2">
+    <div class="row mt-4  text text-center">
+      <div class="col-md-4">
         <p>Terms of Service</p>
       </div>
-      <div class="col-2">
+      <div class="col-md-4">
         <p>Privacy Policy</p>
       </div>
-      <div class="col-2">
+      <div class="col-md-4">
         <p>Store Refund Policy</p>
       </div>
     </div>
-  </div>
+  </footer>
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
