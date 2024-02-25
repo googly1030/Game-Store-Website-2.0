@@ -6,6 +6,11 @@
 
 GameStore is a web-based game store built with Flask, HTML, CSS, JavaScript, and Bootstrap. It provides users with a platform to browse, purchase, and explore a wide variety of games. With an intuitive user interface and comprehensive features, GameHub aims to deliver a seamless gaming experience to its users.
 
+#Demo Video
+
+https://github.com/googly1030/Game-Store-Website-2.0/assets/95157270/791ea194-cb0a-4439-9ccd-368c3ea2be3f
+
+
 ## Technologies Used:
 
 **Front-end:** HTML, CSS, JavaScript, Bootstrap  
